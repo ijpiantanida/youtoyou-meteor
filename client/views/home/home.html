@@ -1,0 +1,59 @@
+<template name="home">
+  <div class="current-video jumbotron">
+    <div class="video-input vertical-center">
+      <input type="text" class="video-url form-control input-lg" placeholder="Enter Youtube video ID or URL">
+      <a class="download-link col-right btn btn-lg {{downloadLinkClass}}" href={{fullDownloadUrl}}>
+        <span class="glyphicon glyphicon-download"></span>
+        Download
+      </a>
+    </div>
+    {{#if currentVideo}}
+      {{>videoPreview currentVideo}}
+    {{/if}}
+    {{#if loadingCurrentVideo}}
+      <div class="loading-video text-info">
+        Loading data ...
+      </div>
+    {{/if}}
+    {{#if currentVideoError}}
+      <div class="error-video text-danger">
+        There was an error loading your video
+      </div>
+    {{/if}}
+  </div>
+
+  {{>latestVideos}}
+</template>
+
+<template name="videoPreview">
+  <div class="video-details">
+    <img class='video-img img-thumbnail' src={{thumbnail}}>
+    <span>{{title}} ({{duration}}s)</span>
+  </div>
+</template>
+
+<template name="latestVideos">
+  <h3>Latest Videos:</h3>
+  <div class="all-videos">
+    <ul class="list-group">
+    {{#each videos}}
+      {{> video}}
+    {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name="video">
+  <li class="video list-group-item">
+    <div class="row">
+      <div class="col-left col-sm-11">
+        {{>videoPreview this}}
+      </div>
+      <div class="download-link-container col-right col-sm-1">
+        <a class="download-link" href={{fullDownloadUrl}}>
+          <span class="download-icon glyphicon glyphicon-download"></span>
+        </a>
+      </div>
+    </div>
+  </li>
+</template>

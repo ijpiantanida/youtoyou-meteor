@@ -1,0 +1,1 @@
+Meteor.publish("all-videos", function(){ return Videos.find({})})
