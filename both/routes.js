@@ -3,8 +3,13 @@ Router.route('/', {
   controller: 'HomeController'
 });
 
-Router.route('/download', {
-  name: 'download',
-  controller: "DownloadController",
-  where: 'server'
+Router.route('/register', {
+  name: 'register',
+  controller: "RegisterController",
 });
+
+Router.route('/email_validation', {
+  name: 'email_validation',
+  controller: "EmailValidationController",
+});
+

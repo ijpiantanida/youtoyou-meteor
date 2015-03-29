@@ -11,6 +11,14 @@ Schemas.Video = new SimpleSchema({
   duration: {
     type: Number
   },
+  isPublic:{
+    type: Boolean,
+    defaultValue: false
+  },
+  userId:{
+    type: String,
+    optional: true
+  },
   createdAt: {
     type: Date,
     autoValue: function () {

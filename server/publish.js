@@ -1,1 +1,3 @@
-Meteor.publish("all-videos", function(){ return Videos.find({})})
+Meteor.publish("all-videos", function(){
+  return Videos.find({$or: [{ isPublic: true}, {userId: this.userId}]})
+})

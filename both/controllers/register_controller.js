@@ -1,0 +1,3 @@
+RegisterController = ApplicationController.extend({
+  
+});

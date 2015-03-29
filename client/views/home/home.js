@@ -3,13 +3,22 @@ dict.setDefault("currentVideoId", null)
 dict.setDefault("currentVideoData", null)
 dict.setDefault("loading", false)
 dict.setDefault("error", false)
+dict.setDefault("currentVideoIsPublic", true)
 
 function cleanCurrentVideo(){
   dict.set("loading", false)
   dict.set("currentVideoId", null)
   dict.set("currentVideoData", null)
   dict.set("error", false)
+  dict.set("currentVideoIsPublic", true)
 }
+
+Template.home.onCreated(function(){
+  this.autorun(function(){
+    Meteor.userId()
+    cleanCurrentVideo()
+  })
+})
 
 Template.home.helpers({
   fullDownloadUrl: function(){
@@ -35,6 +44,9 @@ Template.home.helpers({
     }else{
       return "btn-default disabled"
     }
+  },
+  currentVideoIsPublic: function(){
+    return dict.get("currentVideoIsPublic")
   }
 })
 
@@ -74,10 +86,17 @@ Template.home.events({
   },
   "click .download-link": function(event){
     if(dict.get("currentVideoData")){
-      Videos.insert(dict.get("currentVideoData"))
+      var doc = dict.get("currentVideoData")
+      doc.isPublic = dict.get("currentVideoIsPublic")
+      doc.userId = Meteor.userId()
+
+      Videos.insert(doc)
       cleanCurrentVideo()
       $(".video-url").val('')
     }
+  },
+  "click .public-icon": function(event){
+    dict.set("currentVideoIsPublic", !dict.get("currentVideoIsPublic"))
   }
 })
 
@@ -103,7 +122,9 @@ Template.videoPreview.helpers({
     return string
   },
   createdAt: function(){
-    return this.createdAt.toLocaleDateString() + " " + this.createdAt.toLocaleTimeString()
+    if(this.createdAt){
+      return this.createdAt.toLocaleDateString() + " " + this.createdAt.toLocaleTimeString()
+    }
   }
 })
 

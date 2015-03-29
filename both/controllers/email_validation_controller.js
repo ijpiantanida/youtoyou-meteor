@@ -1,0 +1,3 @@
+EmailValidationController = ApplicationController.extend({
+  
+});

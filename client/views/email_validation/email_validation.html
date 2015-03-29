@@ -1,0 +1,11 @@
+<template name="emailValidation">
+  <div class="row">
+    <div class="wait-for-validation col-sm-12">
+      {{#if waitingForValidation}}
+        Please go to your email we've just sent and click the validation link to finish your registration.
+      {{else}}
+        Cool, no go home
+      {{/if}}
+    </div>
+  </div>
+</template>

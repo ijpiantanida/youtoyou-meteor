@@ -1,11 +1,23 @@
 <template name="home">
   <div class="current-video jumbotron">
-    <div class="video-input vertical-center">
-      <input type="text" class="video-url form-control input-lg" placeholder="Enter Youtube video ID or URL">
-      <a class="download-link col-right btn btn-lg {{downloadLinkClass}}" href={{fullDownloadUrl}}>
-        <span class="glyphicon glyphicon-download"></span>
-        Download
-      </a>
+    <div class="video-input vertical-center row">
+      <div class='col-md-10'>
+        <input type="text" class="video-url form-control input-lg" placeholder="Enter Youtube video ID or URL">
+        {{#if currentUser}}
+          <span class="public-icon fa-stack fa-lg">
+            <i class="fa fa-globe fa-stack-1x"></i>
+            {{#unless currentVideoIsPublic}}
+              <i class="fa fa-ban fa-stack-2x text-danger"></i>
+            {{/unless}}
+          </span>
+        {{/if}}
+      </div>
+      <div class='col-md-2'>
+        <a class="download-link col-right btn btn-lg {{downloadLinkClass}}" href={{fullDownloadUrl}}>
+          <span class="glyphicon glyphicon-download"></span>
+          Download
+        </a>
+      </div>
     </div>
     {{#if currentVideo}}
       {{>videoPreview currentVideo}}

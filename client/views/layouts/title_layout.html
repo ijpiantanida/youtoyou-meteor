@@ -1,7 +1,19 @@
-<template name="TitleLayout">
+<template name="titleLayout">
   <div class="container">
-    <div class="page-header">
-      <h2> You 2 You </h2>
+    <div class="page-header row">
+      <div class="col-sm-10">
+        <a href="{{pathFor 'home'}}">
+          <h2>You 2 You</h2>
+        </a>
+      </div>
+      <div class="current-user col-sm-2">
+        {{#if currentUser }}
+          <span>Hello {{username}}</span>
+          <a class="log-out">Log out</a>
+        {{else}}
+          <a class="sign-up-link" href="{{pathFor 'register'}}">Sign Up or Sign In</a>
+        {{/if}}
+      </div>
     </div>
     <div class="title_layout">
       {{> yield }}

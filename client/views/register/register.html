@@ -1,0 +1,24 @@
+<template name="register">
+  <div class="row">
+    <div class="sign-up col-sm-6">
+      <h3>New here? Create an Account!</h3>
+      {{#autoForm id="SignUpForm" schema="Schemas.SignUpForm" type="method" meteormethod="register/signUp"}}
+        <div class="field-group">
+          {{> afQuickField name='username'}}
+          {{> afQuickField name='email'}}
+          {{> afQuickField name='password' type='password'}}
+          {{> afQuickField name='passwordConfirmation' type='password'}}
+        </div>
+        {{#if isLoading}}
+          <span class="text-info">Creating account...</span>
+        {{else}}
+        <button type="submit" class="btn btn-primary btn-block ">Sign Up</button>
+        {{/if}}
+      {{/autoForm}}
+    </div>
+    <div class="sign-in col-sm-6">
+      <h3>Already Registered? Welcome back!</h3>
+      {{>signIn}}
+    </div>
+  </div>
+</template>

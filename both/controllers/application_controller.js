@@ -1,3 +1,3 @@
 ApplicationController = RouteController.extend({
-  layoutTemplate: "TitleLayout"
+  layoutTemplate: "titleLayout"
 });
