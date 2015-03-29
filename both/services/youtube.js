@@ -12,10 +12,10 @@ Youtube = {
       return string
     }
   },
-  getFullUrlFromVideoId: function(videoId){
+  youtubeUrlFor: function(videoId){
     return "https://www.youtube.com/watch?v=" + videoId
   },
   downloadLinkForVideoId: function(videoId){
-    return "https://youtoyou.herokuapp.com?url=" + this.getFullUrlFromVideoId(videoId)
+    return "https://youtoyou.herokuapp.com?url=" + this.youtubeUrlFor(videoId)
   }
 }

@@ -79,7 +79,33 @@ Template.home.events({
       $(".video-url").val('')
     }
   }
-});
+})
+
+Template.videoPreview.helpers({
+  youtubeUrl: function(){
+    return Youtube.youtubeUrlFor(this.youtubeId)
+  },
+  durationAsString: function(){
+    var string = ""
+    var remainingSeconds = this.duration
+    if((remainingSeconds/60/60 | 0) > 0){
+      string += (remainingSeconds/60/60 | 0) + "h "
+      remainingSeconds -= (remainingSeconds/60/60 | 0) * 60 * 60
+    }
+    if((remainingSeconds/60 | 0) > 0){
+      string += (remainingSeconds/60 | 0) + "m "
+      remainingSeconds -= (remainingSeconds/60 | 0) * 60
+    }
+    if(remainingSeconds > 0){
+      string += remainingSeconds + "s"
+    }
+
+    return string
+  },
+  createdAt: function(){
+    return this.createdAt.toLocaleDateString() + " " + this.createdAt.toLocaleTimeString()
+  }
+})
 
 Template.latestVideos.helpers({
   videos: function(){
