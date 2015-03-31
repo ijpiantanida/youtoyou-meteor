@@ -14,6 +14,7 @@ Package.onUse(function(api) {
       'underscore',
       /* Package server */
       'aldeed:collection2@2.3.2',
+      'dburles:collection-helpers@1.0.2',
       'matb33:collection-hooks@0.7.11'
     ],
     client: [

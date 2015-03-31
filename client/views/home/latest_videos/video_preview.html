@@ -6,17 +6,22 @@
       </a>
     </div>
     <div class="col-md-10">
-      <a target="_blank" href={{youtubeUrl}}>
-        <h4 class="title">{{title}}</h4>
-      </a>
-      <div class="video-subdetails">
-        <span class="duration text-info">Duration: {{durationAsString}}</span>
-        {{#if createdAt}}
-          <span class="created-at text-info">Added on: {{createdAt}}</span>
-        {{/if}}
-        {{#if username}}
-          <span class="created-at text-info">Added by: {{username}}</span>
-        {{/if}}
+      <div class="primary-details">
+        <a target="_blank" href={{youtubeUrl}}>
+          <h4 class="title">{{title}}</h4>
+        </a>
+        <div class="video-subdetails">
+          <span class="duration text-info">Duration: {{durationAsString}}</span>
+          {{#if createdAt}}
+            <span class="created-at text-info">Added on: {{createdAt}}</span>
+          {{/if}}
+          {{#if username}}
+            <span class="created-at text-info">Added by: {{username}}</span>
+          {{/if}}
+        </div>
+      </div>
+      <div class="secondary-details">
+        {{> Template.contentBlock}}
       </div>
     </div>
   </div>

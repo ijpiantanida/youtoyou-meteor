@@ -5,15 +5,12 @@ Schemas.Like = new SimpleSchema({
   userId:{
     type: String
   },
-  createdAt: {
-    type: Date,
-    autoValue: function () {
-      if (!this.isSet) {
-        return new Date();
-      }
-    }
-  }
+  createdAt: Schemas.Mixins.createdAt
 });
 
 Likes = new Mongo.Collection("likes")
 Likes.attachSchema(Schemas.Like)
+
+Likes.likeByUser = function(userId, videoId){
+  return Likes.findOne({videoId: videoId, userId: userId})
+}

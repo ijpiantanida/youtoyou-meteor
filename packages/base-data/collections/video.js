@@ -19,17 +19,14 @@ Schemas.Video = new SimpleSchema({
     type: String,
     optional: true
   },
-  createdAt: {
-    type: Date,
-    autoValue: function() {
-      if (this.isInsert) {
-        return new Date;
-      } else if (this.isUpsert) {
-        return {$setOnInsert: new Date};
-      }
-    }
-  }
+  createdAt: Schemas.Mixins.createdAt
 });
 
 Videos = new Mongo.Collection("videos")
 Videos.attachSchema(Schemas.Video)
+
+Videos.helpers({
+  likes: function () {
+    return Likes.find({videoId: this._id})
+  }
+})
