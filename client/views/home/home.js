@@ -71,7 +71,7 @@ function getVideoDetailsFunction(videoId){
 
 var timer
 Template.home.events({
-  "keyup .video-url": function(event){
+  "keyup .current-video .video-url": function(event){
     Meteor.clearTimeout(timer)
 
     var oldVideoId = dict.get("currentVideoId")
@@ -84,7 +84,7 @@ Template.home.events({
       timer = Meteor.setTimeout(getVideoDetailsFunction(videoId), 700)
     }
   },
-  "click .download-link": function(event){
+  "click .current-video .download-link": function(event){
     if(dict.get("currentVideoData")){
       var doc = dict.get("currentVideoData")
       doc.isPublic = dict.get("currentVideoIsPublic")
@@ -95,7 +95,7 @@ Template.home.events({
       $(".video-url").val('')
     }
   },
-  "click .public-icon": function(event){
+  "click .current-video .public-icon": function(event){
     dict.set("currentVideoIsPublic", !dict.get("currentVideoIsPublic"))
   }
 })

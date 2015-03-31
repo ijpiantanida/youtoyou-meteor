@@ -1,6 +1,10 @@
 Videos.allow({
   insert: function(userId, video) {
     return true
+  },
+  update: function(userId, video, fieldNames, modifier){
+    if(!userId || video.userId != userId){return false}
+    return _.isEqual(fieldNames, ['isPublic'])
   }
 })
 

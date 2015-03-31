@@ -27,6 +27,9 @@ Template.video.helpers({
   },
   likeByUser: function(){
     return Likes.likeByUser(Meteor.userId(), this._id)
+  },
+  isOwnVideo: function(){
+    return Meteor.userId() && this.userId == Meteor.userId()
   }
 })
 
@@ -39,5 +42,8 @@ Template.video.events({
     }else{
       Likes.insert({videoId: this._id, userId: Meteor.userId()})
     }
+  },
+  'click .video .public-icon': function(){
+    Videos.update(this._id, {$set: {isPublic: !this.isPublic}})
   }
 })
