@@ -33,6 +33,7 @@ Package.onUse(function(api) {
   api.export('Schemas');
 
   api.addFiles('collections/user.js');
+  api.export('Users');
   api.addFiles('collections/video.js');
   api.export('Videos');
 });

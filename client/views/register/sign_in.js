@@ -14,7 +14,7 @@ Schemas.SignInForm.messages({
   'failedSignIn': 'Invalid username or password'
 });
 
-Template.register.helpers({
+Template.signIn.helpers({
   isLoading: function () {
     return dict.get('isLoading')
   },

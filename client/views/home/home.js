@@ -100,6 +100,12 @@ Template.home.events({
   }
 })
 
+Tracker.autorun(function () {
+  Meteor.subscribe("all-videos")
+  publicUserId = _.uniq(_.compact(_.pluck(Videos.find({}, {fields: {userId: 1}}).fetch(), 'userId')))
+  Meteor.subscribe("public-users", publicUserId);
+});
+
 Template.videoPreview.helpers({
   youtubeUrl: function(){
     return Youtube.youtubeUrlFor(this.youtubeId)
@@ -124,6 +130,14 @@ Template.videoPreview.helpers({
   createdAt: function(){
     if(this.createdAt){
       return this.createdAt.toLocaleDateString() + " " + this.createdAt.toLocaleTimeString()
+    }
+  },
+  username: function(){
+    if(this.userId){
+      user = Users.findOne(this.userId)
+      if(user){
+        return user.username  
+      }
     }
   }
 })
