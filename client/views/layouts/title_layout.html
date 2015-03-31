@@ -16,7 +16,11 @@
       </div>
     </div>
     <div class="title_layout">
-      {{> yield }}
+      {{#if waitingForValidation}}
+        {{> emailValidation}}
+      {{else}}
+        {{> yield }}
+      {{/if}}
     </div>
   </div>
 </template>

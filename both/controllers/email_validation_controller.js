@@ -1,3 +1,0 @@
-EmailValidationController = ApplicationController.extend({
-  
-});

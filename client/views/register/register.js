@@ -51,7 +51,7 @@ AutoForm.hooks({
       Meteor.loginWithPassword(result.username, result.password, function (error) {
         dict.set('isLoading', false)
         if(!error){
-          Router.go('email_validation')
+          Router.go('home')
         }else{
 
         }

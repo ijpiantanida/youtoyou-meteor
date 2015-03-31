@@ -1,11 +1,23 @@
 <template name="emailValidation">
   <div class="row">
     <div class="wait-for-validation col-sm-12">
-      {{#if waitingForValidation}}
-        Please go to your email we've just sent and click the validation link to finish your registration.
-      {{else}}
-        Cool, no go home
-      {{/if}}
+      <p class="instructions">
+        Please go to your email ({{email}}) we've just sent and click the validation link to finish your registration
+      </p>
+      <div class="resend-email row">
+        {{#autoForm id="ChangeEmailForm" schema="Schemas.ChangeEmailForm" type="method" meteormethod="user/changeEmail"}}
+          <div class="col-sm-10">
+            {{> afQuickField name='email' label=false placeholder='Email'}}
+          </div>
+          <div class="col-sm-2">
+            {{#if isLoading}}
+              <span class="text-info">Sending email...</span>
+            {{else}}
+              <button type="submit" class="btn btn-primary btn-block ">Send Email Again</button>
+            {{/if}}
+          </div>
+        {{/autoForm}} 
+      </div>
     </div>
   </div>
 </template>
