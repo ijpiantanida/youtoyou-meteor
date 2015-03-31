@@ -1,0 +1,25 @@
+<template name="latestVideos">
+  <h3>Latest Videos:</h3>
+  <div class="all-videos">
+    <ul class="list-group">
+    {{#each videos}}
+      {{> video}}
+    {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name="video">
+  <li class="video list-group-item">
+    <div class="row">
+      <div class="col-left col-sm-11">
+        {{>videoPreview this}}
+      </div>
+      <div class="download-link-container col-right col-sm-1">
+        <a class="download-link" href={{fullDownloadUrl}}>
+          <span class="download-icon glyphicon glyphicon-download"></span>
+        </a>
+      </div>
+    </div>
+  </li>
+</template>

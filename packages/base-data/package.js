@@ -36,4 +36,6 @@ Package.onUse(function(api) {
   api.export('Users');
   api.addFiles('collections/video.js');
   api.export('Videos');
+  api.addFiles('collections/like.js');
+  api.export('Likes');
 });

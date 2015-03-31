@@ -1,0 +1,23 @@
+<template name="videoPreview">
+  <div class="video-details row">
+    <div class="col-md-2">
+      <a target="_blank" href={{youtubeUrl}}>
+        <img class='video-img img-thumbnail' src={{thumbnail}}>
+      </a>
+    </div>
+    <div class="col-md-10">
+      <a target="_blank" href={{youtubeUrl}}>
+        <h4 class="title">{{title}}</h4>
+      </a>
+      <div class="video-subdetails">
+        <span class="duration text-info">Duration: {{durationAsString}}</span>
+        {{#if createdAt}}
+          <span class="created-at text-info">Added on: {{createdAt}}</span>
+        {{/if}}
+        {{#if username}}
+          <span class="created-at text-info">Added by: {{username}}</span>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>
