@@ -28,5 +28,8 @@ Videos.attachSchema(Schemas.Video)
 Videos.helpers({
   likes: function () {
     return Likes.find({videoId: this._id})
+  },
+  comments: function(){
+    return Comments.find({videoId: this._id})
   }
 })

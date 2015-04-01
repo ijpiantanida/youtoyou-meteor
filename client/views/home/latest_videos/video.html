@@ -1,0 +1,58 @@
+<template name="video">
+  <li class="video list-group-item">
+    <div class="row">
+      <div class="col-left col-sm-11">
+        {{#videoPreview this}}
+          <span class="like-icon">
+            <i class="fa {{#if likeByUser}}fa-star{{else}}fa-star-o{{/if}}"></i> {{likesCounter}}
+          </span>
+          {{#if isOwnVideo}}
+            <span class="public-icon fa-stack fa-lg">
+              <i class="fa fa-globe fa-stack-1x"></i>
+              {{#unless isPublic}}
+                <i class="fa fa-ban fa-stack-2x text-danger"></i>
+              {{/unless}}
+            </span>
+          {{/if}}
+        {{/videoPreview}}
+      </div>
+      <div class="download-link-container col-right col-sm-1">
+        <a class="download-link" href={{fullDownloadUrl}} download>
+          <span class="download-icon glyphicon glyphicon-download"></span>
+        </a>
+      </div>
+    </div>
+    <div class='comments-container'>
+      <div class='toggle-comments'>
+        <i class="fa fa-{{#if comentsExpanded}}arrow-circle-down{{else}}arrow-circle-right{{/if}}"></i> ({{commentsCounter}} Comments)
+      </div>
+      {{#if comentsExpanded}}
+        <ul class="comments-list list-group">
+          {{#each comments}}
+            {{> comment}}
+          {{/each}}
+        </ul>
+        {{#if currentUser}}
+          <div class="new-comment row">
+            <div class="new-comment-text col-sm-10">
+              <textarea class="form-control" rows="3" value="{{currentCommentText}}"></textarea>
+            </div>
+            <div class="new-comment-button col-sm-2">
+              <button class="btn btn-primary btn-block ">Comment</button>
+            </div>
+          </div>
+        {{/if}}
+      {{/if}}
+    </div>
+  </li>
+</template>
+
+<template name="comment">
+  <li class="comment list-group-item">
+    <div class="details">
+      <span class="created-at text-info">{{createdAt}}</span> -
+      <span class="created-at text-info">{{username}}</span>
+    </div>
+    <p class="text">{{text}}</p>
+  </li>
+</template>

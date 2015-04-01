@@ -1,5 +1,7 @@
 Meteor.publish("all-videos", function(){
-  return Videos.find({$or: [{ isPublic: true}, {userId: this.userId}]})
+  videos = Videos.find({$or: [{ isPublic: true}, {userId: this.userId}]})
+  comments = Comments.find({videoId: {$in: _.pluck(videos.fetch(), '_id')}})
+  return [videos, comments]
 })
 
 Meteor.publish("public-users", function(userId){

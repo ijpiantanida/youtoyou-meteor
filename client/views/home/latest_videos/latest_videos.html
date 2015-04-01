@@ -8,30 +8,3 @@
     </ul>
   </div>
 </template>
-
-<template name="video">
-  <li class="video list-group-item">
-    <div class="row">
-      <div class="col-left col-sm-11">
-        {{#videoPreview this}}
-          <span class="like-icon">
-            <i class="fa {{#if likeByUser}}fa-star{{else}}fa-star-o{{/if}}"></i> {{likesCounter}}
-          </span>
-          {{#if isOwnVideo}}
-            <span class="public-icon fa-stack fa-lg">
-              <i class="fa fa-globe fa-stack-1x"></i>
-              {{#unless isPublic}}
-                <i class="fa fa-ban fa-stack-2x text-danger"></i>
-              {{/unless}}
-            </span>
-          {{/if}}
-        {{/videoPreview}}
-      </div>
-      <div class="download-link-container col-right col-sm-1">
-        <a class="download-link" href={{fullDownloadUrl}}>
-          <span class="download-icon glyphicon glyphicon-download"></span>
-        </a>
-      </div>
-    </div>
-  </li>
-</template>

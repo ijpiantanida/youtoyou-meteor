@@ -20,3 +20,9 @@ Likes.allow({
     return like.userId == userId
   }
 })
+
+Comments.allow({
+  insert: function(userId, comment) {
+    return userId && comment.userId == userId
+  }
+})
