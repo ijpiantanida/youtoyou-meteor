@@ -1,8 +1,11 @@
 <template name="videoPreview">
   <div class="video-details row">
     <div class="col-md-2">
-      <a target="_blank" href={{youtubeUrl}}>
-        <img class='video-img img-thumbnail' src={{thumbnail}}>
+      <a class="video-img-container" target="_blank" href={{youtubeUrl}}>
+        <div class="div-visible"><img class="video-img img-thumbnail" src={{thumbnail}} /></div>
+        <div class="div-hidden">
+          <i class="fa fa-play"></i>
+        </div>
       </a>
     </div>
     <div class="col-md-10">
